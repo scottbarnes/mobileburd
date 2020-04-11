@@ -1,0 +1,126 @@
+{% block content %}
+<!doctype html>
+<html lang='en'>
+<head><title>MobileBurd</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <!-- 'Slate' theme -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/slate/bootstrap.min.css"
+          rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <!-- <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet"> -->
+    <link href='{{ url_for('static', filename='style.css') }}' type='text/css' rel='stylesheet' />
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="peak-name">
+                {% if report.get('peaks') %}
+                    {% set peaks = report.get('peaks') %}
+                    {% for peak in peaks %}
+                        <p class="h3"><a href="{{ peak.get('url') }}">{{ peak.get('name') }}</a></p>
+                    {% endfor %}
+                {% endif %}
+                <div class="date">
+                    <b>{{ report.get('date') }}</b>
+                </div>
+                <br>
+                <div class="people">
+                    {% if report.get('people') %}
+                        <b>With:</b>
+                        {% set people = report.get('people') %}
+                        {% for person in people %}
+                            <a href="{{ person.get('url') }}">{{ person.get('name') }}</a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div style="text-align: center;">
+                <!-- <a href=../trip_photos/lizards_mouth_rock_2/reg/lizards_mouth_rock.jpg>
+                    <img width=200 name=thumbnail src=../trip_photos/lizards_mouth_rock_2/reg/lizards_mouth_rock.jpg></a> -->
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col">
+                    {% if report.get('photos') %}
+                        <a href="{{ report.get('photos') }}">Photos</a>
+                    {% endif %}
+                </div>
+                <div class="col">
+                    {% if report.get('maps') %}
+                        Maps:
+                        {% set maps = report.get('maps') %}
+                        {% for map in maps %}
+                            <a href="{{ map.get('url') }}">{{ map.get('name') }}</a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col">
+                    {% if report.get('gpxes') %}
+                        GPX:
+                        {% set gpxes = report.get('gpxes') %}
+                        {% for gpx in gpxes %}
+                            <a href="{{ gpx.get('url') }}">{{ gpx.get('name') }}</a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <div style="text-align: center;">
+                        <p class="previously-climbed">Previously climbed: <a
+                                href=../trip_reports/lizards_mouth_rock_1.html>Sun, Apr 1, 2018</a></p> -->
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <p class="h2">Story</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            {{ report.get('body')|safe }}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="text-align: left;">
+                {% if report.get('comments') %}
+                    {% set comments = report.get('comments') %}
+                    {% for comment in comments %}
+                        {{ comment|safe }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="text-align: center;">
+                <h3><a href="{{ url_for('index') }}">Home</a></h3>
+                <p>
+                <p><i>{{ report.get('last_updated') }}</i><br>
+                    <i>{{ report.get('contact') }}</i>
+                    </b>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+    <script src="https://unpkg.com/@popperjs/core@2.2.2/dist/umd/popper.min.js"></script>
+    <script>
+        const tooltip = document.querySelector('#popupPhoto');
+        Popper.createPopper(tooltip, {
+            placement: 'top',
+        });
+    </script>
+{% endblock %}
+

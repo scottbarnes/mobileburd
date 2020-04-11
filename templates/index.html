@@ -1,0 +1,51 @@
+{% block content %}
+<!doctype html>
+<html lang='en'>
+<head><title>Bob Burd's (Mobile) Trip Reports</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <!-- 'Slate' theme -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/slate/bootstrap.min.css"
+          rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <!-- <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet"> -->
+    <link href='{{ url_for('static', filename='style.css') }}' type='text/css' rel='stylesheet' />
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10">
+            <h1 class="display-4 title">{{ headers.get('title') }}</h1>
+            <p class="lead">{{ headers.get('last_update')|safe }}</p>
+            <p class="title_text">{{ headers.get('title_text') }}</p>
+            <p class="disclaimer">{{ headers.get('disclaimer') }}</p>
+        </div>
+        <div class="col-lg-2">
+            <p class="challenge-signup" style="text-align: center; vertical-align: middle;">
+                <a href="https://www.snwburd.com/bob/challenge/{{ headers.get('challenge_year') }}">
+                    <img alt="Sierra Challenge info and signup page" width="100" src="https://www.snwburd.com/bob/challenge/{{ headers.get('challenge_year') }}/logos/preview.jpg">
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+            {% for year in reports %}
+                <div class="col-lg-6">
+                {% for trip in year %}
+                    {% if loop.index0 == 0 %}
+                        <p><h3>{{ trip }}</h3></p>
+                    {% elif loop.index0 > 0 %}
+                        <span class="date">{{ trip.get('date') }}</span>
+                        <span class="report">
+                            <a href="{{ url_for('report', report_url=trip.get('url')) }}">{{ trip.get('name') }}</a>
+                        </span>
+                        <br>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}

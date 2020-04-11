@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  flask-prod:
+    build:
+      context: .
+      target: production
+    command: ./boot.sh
+    volumes:
+      - ./:/app
+    image: "mobileburd-production"
+    ports:
+      - '5006:5006'
+    environment:
+      FLASK_ENV: production
+      FLASK_DEBUG: 0
+      LOG_LEVEL: info
+
