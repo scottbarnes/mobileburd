@@ -41,6 +41,11 @@
                         <span class="report">
                             <a href="{{ url_for('report', report_url=trip.get('url')) }}">{{ trip.get('name') }}</a>
                         </span>
+                        {% if trip.get('new') %}
+                            <span class="new">
+                                <img src="{{ url_for('static', filename='new.jpg') }}" alt="New trip report">
+                            </span>
+                        {% endif %}
                         <br>
                     {% endif %}
                 {% endfor %}

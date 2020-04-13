@@ -72,6 +72,10 @@ def get_trip_reports(soup: object) -> list:
                 tr_info['name'] = trip.td.find_next().a.text
                 url = trip.td.find_next().a.get('href')
                 tr_info['url'] = url.split('/')[-1]  # Returns 'report.html' only.
+                # Just as the next <td> has an anchor tag, if there's a new TR, it will *also* have an img tag.
+                new = trip.td.find_next().img  # Returns False if no match.
+                if new:
+                    tr_info['new'] = True
                 reports_for_year.append(tr_info)  # Add this trip's data to the list for this 'year'.
             elif index == 0:
                 reports_for_year.append(trip.text)  # The year is always at index[0]
