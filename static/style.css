@@ -1,0 +1,28 @@
+/* Some CSS for the popup photos */
+
+span.popupPhoto a img {
+    display: none;
+    position: absolute;
+    left: 80px;
+    top: -22px;
+    width: 200px;
+    #height: 150px;
+}
+
+span.popupPhoto a {
+    display: inline-block;
+    position: relative;
+}
+
+span.popupPhoto a img {
+    display: none;
+}
+
+span.popupPhoto a:hover img {
+    display: inherit;
+}
+
+span.popupPhoto a img {
+    display: none;
+    z-index: 100;
+}

@@ -10,7 +10,7 @@ TODO: Add title photo
 """
 import requests
 import re
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, send_from_directory
 from flask_bootstrap import Bootstrap
 from bs4 import BeautifulSoup, NavigableString, Tag
 
@@ -301,3 +301,10 @@ def trip_photos(page):
     prefix = 'https://www.snwburd.com/bob/trip_photos'
     return redirect(f'{prefix}/{page}')
 
+
+@app.route('/robots.txt')
+def static_from_root():
+    """
+    Serve up robots.txt so (rule abiding) bots don't index this and screw up Bob's page rank.
+    """
+    return send_from_directory(app.static_folder, request.path[1:])
