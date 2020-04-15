@@ -29,12 +29,14 @@
                 </div>
                 <br>
                 <div class="people">
-                    {% if report.get('people') %}
-                        <b>With:</b>
-                        {% set people = report.get('people') %}
-                        {% for person in people %}
-                            <a href="{{ person.get('url') }}">{{ person.get('name') }}</a>
+                    {% if report.get('participants') %}
+                        <b>With:</b><br>
+                        {% set participants = report.get('participants') %}
+                        <ul>
+                        {% for person in participants %}
+                            <li><a href="{{ person.get('url') }}">{{ person.get('name') }}</a></li>
                         {% endfor %}
+                        </ul>
                     {% endif %}
                 </div>
             </div>

@@ -203,7 +203,7 @@ def get_report(soup: object) -> dict:
         """
         soup = soup.find(id='scrollbox')
         soup = str(soup)  # Cast as string to .replace() scrollbar code. Note: this creates many newlines.
-        soup = soup.replace(' style="height:auto;overflow-y:scroll"', '').replace('\n', '')  # Remove newlines.
+        soup = soup.replace(' style="height:auto;overflow-y:scroll"', '').replace('\n', ' ')  # Remove newlines.
         soup = BeautifulSoup(soup, 'lxml')  # Make it HTML again so it can be prettified for source viewing.
         soup = soup.prettify()
         return soup
