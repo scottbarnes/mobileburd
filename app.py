@@ -75,7 +75,11 @@ def get_trip_reports(soup: object) -> list:
                 # Just as the next <td> has an anchor tag, if there's a new TR, it will *also* have an img tag.
                 new = trip.td.find_next().img  # Returns False if no match.
                 if new:
-                    tr_info['new'] = True
+                    new = new.get('src')
+                    if 'new.jpg' in new:
+                        tr_info['new'] = 'new'
+                    elif 'red.ball.GIF' in new:
+                        tr_info['new'] = 'not_written'
                 reports_for_year.append(tr_info)  # Add this trip's data to the list for this 'year'.
             elif index == 0:
                 reports_for_year.append(trip.text)  # The year is always at index[0]

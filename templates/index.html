@@ -43,7 +43,11 @@
                         </span>
                         {% if trip.get('new') %}
                             <span class="new">
-                                <img src="{{ url_for('static', filename='new.jpg') }}" alt="New trip report">
+                                {% if trip.get('new') == 'new' %}
+                                    <img src="{{ url_for('static', filename='new.jpg') }}" alt="New trip report">
+                                {% elif trip.get('new') == 'not_written' %}
+                                    <img src="{{ url_for('static', filename='red_ball.gif') }}" alt="Report not yet written">
+                                {% endif %}
                             </span>
                         {% endif %}
                         <br>
