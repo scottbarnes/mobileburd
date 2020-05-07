@@ -6,6 +6,7 @@ services:
       context: .
       target: production
     command: ./boot.sh
+    restart: unless-stopped
     volumes:
       - ./:/app
     image: "mobileburd-production"
