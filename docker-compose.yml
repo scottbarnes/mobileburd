@@ -11,7 +11,7 @@ services:
       - ./:/app
     image: "mobileburd-production"
     ports:
-      - '5006:5006'
+      - '5006:80'
     environment:
       FLASK_ENV: production
       FLASK_DEBUG: 0

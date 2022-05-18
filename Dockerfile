@@ -26,7 +26,7 @@ ENV FLASK_APP app.py
 
 # ========================= PRODUCTION ===========================
 FROM base AS production
-EXPOSE 5006
+EXPOSE 80
 ENTRYPOINT ["/bin/bash", "./boot.sh"]
 
 # # =========================== MANAGE =============================
