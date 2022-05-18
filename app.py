@@ -312,3 +312,10 @@ def static_from_root():
     Serve up robots.txt so (rule abiding) bots don't index this and screw up Bob's page rank.
     """
     return send_from_directory(app.static_folder, request.path[1:])
+
+@app.route('/ping')
+def ping():
+    """
+    Liveness check: return "pong" when someone visits /ping.
+    """
+    return "pong"
