@@ -9,7 +9,7 @@ Flask-Bootstrap==3.3.7.1
 idna==2.9
 itsdangerous==1.1.0
 Jinja2==3.0.1
-lxml==4.6.3
+lxml==4.6.5
 MarkupSafe==2.0.1
 # post==2019.4.13
 public==2020.12.3
