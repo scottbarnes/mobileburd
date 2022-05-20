@@ -313,9 +313,9 @@ def static_from_root():
     """
     return send_from_directory(app.static_folder, request.path[1:])
 
-@app.route('/ping')
+@app.route('/healthz')
 def ping():
     """
-    Liveness check: return "pong" when someone visits /ping.
+    Liveness check: return 200 when someone visits /health.
     """
-    return "pong"
+    return "pong\n"
