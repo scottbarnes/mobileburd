@@ -15,7 +15,7 @@ MarkupSafe==2.0.1
 public==2020.12.3
 query-string==2020.12.3
 # request==2019.4.13
-requests==2.26.0
+requests==2.31.0
 soupsieve==2.0
 urllib3==1.26.6
 visitor==0.1.3
